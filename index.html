@@ -174,6 +174,43 @@
       background: rgba(245, 158, 11, 0.25);
       color: #fbbf24;
     }
+
+    /* Infinite Horizontal Sliding Marquee */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+    .animate-marquee-reverse {
+      display: flex;
+      width: max-content;
+      animation: marquee 28s linear infinite reverse;
+    }
+
+    /* Scroll Reveal Slide Animations */
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-left.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal-right.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
   </style>
 </head>
 
@@ -319,9 +356,33 @@
       </div>
     </section>
 
+    <!-- Infinite Horizontal Sliding Marquee -->
+    <div class="w-full overflow-x-hidden border-y border-slate-900/60 bg-slate-950/40 py-5 select-none relative z-10 my-4">
+      <div class="flex gap-16 whitespace-nowrap animate-marquee">
+        <!-- First group -->
+        <span class="text-xs sm:text-sm font-mono tracking-[0.25em] text-amber-500/60 uppercase">High Throughput Architecture</span>
+        <span class="text-xs sm:text-sm font-mono tracking-[0.25em] text-slate-700 uppercase">&bull;</span>
+        <span class="text-xs sm:text-sm font-mono tracking-[0.25em] text-amber-500/60 uppercase">Go / Golang</span>
+        <span class="text-xs sm:text-sm font-mono tracking-[0.25em] text-slate-700 uppercase">&bull;</span>
+        <span class="text-xs sm:text-sm font-mono tracking-[0.25em] text-amber-500/60 uppercase">Distributed Systems</span>
+        <span class="text-xs sm:text-sm font-mono tracking-[0.25em] text-slate-700 uppercase">&bull;</span>
+        <span class="text-xs sm:text-sm font-mono tracking-[0.25em] text-amber-500/60 uppercase">AI Pipeline Integration</span>
+        <span class="text-xs sm:text-sm font-mono tracking-[0.25em] text-slate-700 uppercase">&bull;</span>
+        <!-- Repeat to ensure seamless scroll -->
+        <span class="text-xs sm:text-sm font-mono tracking-[0.25em] text-amber-500/60 uppercase">High Throughput Architecture</span>
+        <span class="text-xs sm:text-sm font-mono tracking-[0.25em] text-slate-700 uppercase">&bull;</span>
+        <span class="text-xs sm:text-sm font-mono tracking-[0.25em] text-amber-500/60 uppercase">Go / Golang</span>
+        <span class="text-xs sm:text-sm font-mono tracking-[0.25em] text-slate-700 uppercase">&bull;</span>
+        <span class="text-xs sm:text-sm font-mono tracking-[0.25em] text-amber-500/60 uppercase">Distributed Systems</span>
+        <span class="text-xs sm:text-sm font-mono tracking-[0.25em] text-slate-700 uppercase">&bull;</span>
+        <span class="text-xs sm:text-sm font-mono tracking-[0.25em] text-amber-500/60 uppercase">AI Pipeline Integration</span>
+        <span class="text-xs sm:text-sm font-mono tracking-[0.25em] text-slate-700 uppercase">&bull;</span>
+      </div>
+    </div>
+
     <!-- ==================== WORK EXPERIENCE TIMELINE ==================== -->
     <section id="experience" class="space-y-8">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-800/80 pb-4">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-800/80 pb-4 reveal-left">
         <div>
           <div class="text-xs font-mono uppercase tracking-widest text-amber-400 font-semibold mb-1">Professional History</div>
           <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-display">Work Experience</h2>
@@ -339,7 +400,7 @@
 
     <!-- ==================== CONTRIBUTED PROJECTS ==================== -->
     <section id="projects" class="space-y-8">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-800/80 pb-4">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-800/80 pb-4 reveal-left">
         <div>
           <div class="text-xs font-mono uppercase tracking-widest text-amber-400 font-semibold mb-1">Featured Contributions</div>
           <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-display">Contributed Projects</h2>
@@ -350,32 +411,32 @@
       </div>
 
       <!-- Project Cards Grid -->
-      <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 reveal-right">
         <!-- Rendered by JavaScript -->
       </div>
     </section>
 
     <!-- ==================== TECHNICAL SKILLS ==================== -->
     <section id="skills" class="space-y-8">
-      <div class="border-b border-slate-800/80 pb-4">
+      <div class="border-b border-slate-800/80 pb-4 reveal-left">
         <div class="text-xs font-mono uppercase tracking-widest text-amber-400 font-semibold mb-1">Architecture &amp; Tools</div>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-display">Technical Skills</h2>
       </div>
 
       <!-- Skills Categories Grid -->
-      <div id="skills-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div id="skills-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 reveal-right">
         <!-- Rendered by JavaScript -->
       </div>
     </section>
 
     <!-- ==================== EDUCATION & ACHIEVEMENTS ==================== -->
     <section id="education" class="space-y-8">
-      <div class="border-b border-slate-800/80 pb-4">
+      <div class="border-b border-slate-800/80 pb-4 reveal-left">
         <div class="text-xs font-mono uppercase tracking-widest text-amber-400 font-semibold mb-1">Academics &amp; Awards</div>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight font-display">Education &amp; Achievements</h2>
       </div>
 
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 reveal-right">
         <!-- Education Column -->
         <div class="lg:col-span-5 space-y-4">
           <h3 class="text-xs font-mono uppercase tracking-widest text-slate-400 font-bold flex items-center gap-2">
@@ -804,6 +865,24 @@
       
       // Delay slightly to ensure DOM has rendered
       setTimeout(initSpotlight, 100);
+
+      // 3. Scroll Reveal Observer
+      const initReveal = () => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('active');
+            }
+          });
+        }, { threshold: 0.05, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.reveal-left, .reveal-right').forEach(el => {
+          observer.observe(el);
+        });
+      };
+      
+      // Delay slightly to ensure all dynamic HTML nodes are created
+      setTimeout(initReveal, 200);
     });
   </script>
 </body>
