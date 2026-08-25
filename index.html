@@ -124,20 +124,40 @@
       inset: -1px;
       border-radius: 16px;
       padding: 1px;
-      background: linear-gradient(to bottom right, rgba(245, 158, 11, 0.4), transparent, rgba(234, 88, 12, 0.4));
+      background: radial-gradient(
+        220px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+        rgba(245, 158, 11, 0.4),
+        transparent 65%
+      );
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
       pointer-events: none;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.4s ease;
     }
-    .neon-card:hover::before {
+    .neon-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      background: radial-gradient(
+        320px circle at var(--mouse-x, 0px) var(--mouse-y, 0px),
+        rgba(245, 158, 11, 0.04),
+        transparent 70%
+      );
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 0;
+    }
+    .neon-card:hover::before,
+    .neon-card:hover::after {
       opacity: 1;
     }
     .neon-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 20px 40px -15px rgba(0,0,0,0.7), 0 0 30px -5px rgba(245, 158, 11, 0.08);
+      box-shadow: 0 20px 40px -15px rgba(0,0,0,0.8), 0 0 30px -5px rgba(245, 158, 11, 0.08);
       border-color: transparent;
     }
 
@@ -230,7 +250,7 @@
       <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center w-full">
         <!-- Text details -->
         <div class="col-span-1 md:col-span-9 space-y-5">
-          <h1 class="text-5xl sm:text-7xl font-extrabold tracking-tight text-white leading-[1.1] font-display">
+          <h1 id="hero-name" class="text-5xl sm:text-7xl font-extrabold tracking-tight text-white leading-[1.1] font-display">
             Shah Ahmed <span class="bg-gradient-to-r from-amber-400 via-amber-300 to-amber-500 bg-clip-text text-transparent">Saad Rupai</span>
           </h1>
           <p id="hero-summary" class="text-lg sm:text-xl text-slate-300 leading-relaxed font-light max-w-3xl">
@@ -238,11 +258,37 @@
           </p>
         </div>
         
-        <!-- Next-Level Avatar Box -->
-        <div class="col-span-1 md:col-span-3 flex justify-center md:justify-end">
-          <div class="relative group">
+        <!-- Next-Level Avatar Box & Terminal -->
+        <div class="col-span-1 md:col-span-3 space-y-4">
+          <div class="relative group flex justify-center md:justify-end">
             <div class="absolute inset-0 bg-gradient-to-tr from-amber-500 to-orange-600 rounded-3xl blur-md opacity-30 group-hover:opacity-50 transition-opacity"></div>
-            <img src="avatar.jpeg" alt="Shah Ahmed Saad Rupai" class="relative w-40 h-40 sm:w-48 sm:h-48 rounded-3xl object-cover border-2 border-amber-500/30 group-hover:border-amber-400/60 shadow-glow-md bg-[#0a0f1d] transition-all duration-300" />
+            <img src="avatar.jpeg" alt="Shah Ahmed Saad Rupai" class="relative w-full h-44 sm:h-48 rounded-3xl object-cover border-2 border-amber-500/30 group-hover:border-amber-400/60 shadow-glow-md bg-[#0a0f1d] transition-all duration-300" />
+          </div>
+          <!-- Developer Micro-Terminal -->
+          <div class="neon-card rounded-2xl p-4 font-mono text-[10px] sm:text-xs text-slate-300 space-y-2 select-none shadow-glow-sm">
+            <div class="flex items-center gap-1.5 border-b border-slate-800/80 pb-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500/80"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/80"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-green-500/80"></span>
+              <span class="text-[10px] text-slate-500 ml-1.5">saadrupai@terminal</span>
+            </div>
+            <div class="space-y-1.5 pt-1.5 leading-relaxed">
+              <div class="flex items-center gap-2">
+                <span class="text-amber-500">&gt;</span>
+                <span class="text-slate-400">systemctl status backend</span>
+              </div>
+              <div class="text-green-400/90">&bull; active (running) - 10k req/s</div>
+              <div class="flex items-center gap-2">
+                <span class="text-amber-500">&gt;</span>
+                <span class="text-slate-400">ping mapnest-geo</span>
+              </div>
+              <div class="text-slate-400">64 bytes: icmp_seq=1 <span class="text-amber-400 font-semibold">time=84ms</span></div>
+              <div class="flex items-center gap-2">
+                <span class="text-amber-500">&gt;</span>
+                <span class="text-slate-400">cat core.skills</span>
+              </div>
+              <div class="text-amber-300/80 font-semibold">[Go, Distributed, AWS, gRPC]</div>
+            </div>
           </div>
         </div>
       </div>
@@ -731,6 +777,33 @@
         });
         achievementsContainer.innerHTML = achHtml;
       }
+
+      // Next-level Interactive Cursor Effects
+      // 1. Mouse Follower Background Glow
+      const glow = document.createElement('div');
+      glow.className = 'fixed w-[450px] h-[450px] rounded-full pointer-events-none opacity-25 blur-[80px] z-0 transition-transform duration-300 hidden md:block';
+      glow.style.background = 'radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, rgba(4, 7, 17, 0) 70%)';
+      document.body.appendChild(glow);
+      
+      document.addEventListener('mousemove', e => {
+        glow.style.transform = `translate(${e.clientX - 225}px, ${e.clientY - 225}px)`;
+      });
+
+      // 2. Cursor Spotlight for Neon Cards
+      const initSpotlight = () => {
+        document.querySelectorAll('.neon-card').forEach(card => {
+          card.addEventListener('mousemove', e => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+          });
+        });
+      };
+      
+      // Delay slightly to ensure DOM has rendered
+      setTimeout(initSpotlight, 100);
     });
   </script>
 </body>
