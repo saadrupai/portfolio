@@ -1,0 +1,9 @@
+*.aux
+*.log
+*.out
+scratch/
+git_report.py
+practice/
+*key.pem
+*.zip
+*.prod.yml
