@@ -73,21 +73,6 @@ const resumeData = {
   ],
   projects: [
     {
-      name: "Shikho",
-      role: "Backend Engineer",
-      description: "AI-driven content generation and personalized learning platform",
-      links: [
-        {
-          name: "Shikho Website",
-          url: "https://shikho.com"
-        }
-      ],
-      highlights: [
-        "Designed and developed a Go-based AI Agent pipeline to parse video lectures and textbooks, generating chapter summaries, model tests, and quizzes.",
-        "Scaled high-throughput API endpoints and payment systems to support transactions and delivery for over 2.5 million active users."
-      ]
-    },
-    {
       name: "Foodi",
       role: "Backend Engineer",
       description: "Real-time inventory system for food delivery & supermarket platform",
@@ -100,6 +85,23 @@ const resumeData = {
       highlights: [
         "Re-architected inventory module into a distributed, real-time tracking system, reducing stock discrepancies by 90% during peak order surges using event-driven updates and atomic transactions.",
         "Decoupled inventory checks from monolithic flow into a dedicated microservice, migrating REST to RPC and integrating asynchronous messaging—cutting average sync latency from 2.8s to 1.9s (~32% improvement)."
+      ]
+    },
+    {
+      name: "Actionboard.ai",
+      role: "Backend Engineer",
+      description: "Enterprise AI workflow automation and subscription billing platform",
+      links: [
+        {
+          name: "Actionboard.ai Website",
+          url: "https://actionboard.ai"
+        }
+      ],
+      highlights: [
+        "Engineered a scalable billing and usage-metering platform in Go supporting subscription- and usage-based pricing, proration, and automated Stripe/SSLCommerz payments.",
+        "Architected a decoupled asynchronous ML response streaming pipeline using AWS SQS, AWS Lambda (with response streaming Function URLs), and Redis Streams, delivering chunks to UI clients with sub-100ms latency.",
+        "Built an event-driven notification service using RabbitMQ and Redis to dispatch real-time alerts across web and mobile platforms.",
+        "Architected asynchronous ML response streaming pipeline integrating OpenRouter LLMs and GMI Cloud GPU compute nodes for MiniMax M3 models."
       ]
     },
     {
@@ -119,19 +121,19 @@ const resumeData = {
       ]
     },
     {
-      name: "Actionboard.ai",
+      name: "Shikho",
       role: "Backend Engineer",
-      description: "Enterprise AI workflow automation and subscription billing platform",
+      description: "AI-driven content generation and personalized learning platform",
       links: [
         {
-          name: "Actionboard.ai Website",
-          url: "https://actionboard.ai"
+          name: "Shikho Website",
+          url: "https://shikho.com"
         }
       ],
       highlights: [
-        "Engineered a scalable billing and usage-metering platform in Go supporting subscription- and usage-based pricing, proration, and automated Stripe/SSLCommerz payments.",
-        "Architected a decoupled asynchronous ML response streaming pipeline using AWS SQS, AWS Lambda (with response streaming Function URLs), and Redis Streams, delivering chunks to UI clients with sub-100ms latency.",
-        "Built an event-driven notification service using RabbitMQ and Redis to dispatch real-time alerts across web and mobile platforms."
+        "Designed and developed a Go-based AI Agent pipeline to parse video lectures and textbooks, generating chapter summaries, model tests, and quizzes.",
+        "Scaled high-throughput API endpoints and payment systems to support transactions and delivery for over 2.5 million active users.",
+        "Built Go-based AI Agent pipelines integrating LLMs via OpenRouter and high-throughput MiniMax M3 models deployed on GMI Cloud."
       ]
     },
     {
@@ -210,7 +212,10 @@ const resumeData = {
       "RabbitMQ",
       "Redis",
       "Elasticsearch",
-      "AWS (EC2, S3, ECR, SES, SNS, SQS, Amplify, DynamoDB, Appsync)"
+      "AWS (EC2, S3, ECR, SES, SNS, SQS, Amplify, DynamoDB, Appsync)",
+      "OpenRouter",
+      "GMI Cloud",
+      "MiniMax M3"
     ],
     concepts: [
       "Clean Architecture",
