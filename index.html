@@ -997,12 +997,13 @@
         });
       });
 
+      let isMobile = window.innerWidth < 768;
       // Interactive Neural Network Canvas Background
       const canvas = document.getElementById('neural-canvas');
       if (canvas) {
         const ctx = canvas.getContext('2d');
         let particles = [];
-        let isMobile = window.innerWidth < 768;
+        isMobile = window.innerWidth < 768;
         let numParticles = isMobile ? 30 : 90;
         
         const resizeCanvas = () => {
